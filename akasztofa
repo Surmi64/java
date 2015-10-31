@@ -1,0 +1,99 @@
+import java.io.*;
+
+public class Akaszto{	
+	
+	public static void main(String[] args)throws IOException{
+		
+		int elet,talalat;
+		
+		String[] szavak=new String[10];
+		String[] bitofa=new String[9];
+		String[] bitofa2=new String[9];
+		
+		for(int n=0;n<bitofa2.length;n++){
+			bitofa2[n]=" ";
+		}
+		
+		bitofa[0]="  ______";
+		bitofa[1]="  |    |";
+		bitofa[2]="  o    |";
+		bitofa[3]=" /|\\   |";
+		bitofa[4]=" _|_   |";
+		bitofa[5]="       |";
+		bitofa[6]="       |";
+		bitofa[7]="       |";
+		bitofa[8]=" ______|";
+
+		
+		szavak[0]="alma";
+		szavak[1]="csipke";
+		szavak[2]="korte";
+		szavak[3]="banan";
+		szavak[4]="mandarin";
+		szavak[5]="eper";
+		szavak[6]="kokusz";
+		szavak[7]="dinnye";
+		szavak[8]="malac";
+		szavak[9]="ribizli";
+		
+		String szo=szavak[(int)(Math.random()*10)];
+		System.out.println("Ez egy akasztofa jatek. A szoveges felulet hianyossagai miatt ekezetek nelkul zajlik. Az osszetett betukre nincs felkeszitve, tehat az \"ny\" betut nem ismeri, csak az n-et es y-t. A szo hosszusagatol fugg, hogy hany lehetoseged van, de errol tajekoztat. Csak betuket irj be!");
+	  //System.out.println(szo); FOR CHECKING, DELETE //
+		
+		LineNumberReader in=new LineNumberReader(
+							new InputStreamReader(System.in));
+							
+		System.out.print("Kerem az elso tippedet: ");
+		String betu=in.readLine();
+		int hossz=szo.length();
+	  //System.out.println(hossz);
+		
+		String[] szobetui=new String[hossz];
+		
+		for(int k=0;k<hossz;k++){
+			szobetui[k]=" ";
+		}
+		
+		int volte=0;
+		talalat=0;
+		elet=9;
+		
+		while(talalat<=hossz || elet!=0){
+			volte=0;
+			for(int i=0;i<szo.length();i++){
+				if(betu.charAt(0)==szo.charAt(i)){
+					volte++;
+					talalat++;
+					
+					System.out.println("Talalt: "+talalat);
+					
+					szobetui[i]=betu;
+					
+					for(int k=0;k<hossz;k++){
+						System.out.print(" "+szobetui[k]);
+					}
+					System.out.println();
+				}
+			}
+			if(volte==0){
+				bitofa2[elet-1]=bitofa[elet-1];
+				for(int c=0;c<bitofa.length;c++){
+					System.out.println(bitofa2[c]);
+				}
+				elet--;
+				if(elet==0){
+					System.out.println("Sajnos felakasztottak!");
+					break;
+				}
+				System.out.println("Mar csak "+elet+" lehetoseged van!");
+			}
+				
+			if(talalat==hossz){
+				System.out.println("Nyertel!");
+				break;
+			}
+			System.out.print("Ird be a tipped: ");
+			betu=in.readLine();			
+		}	
+	}
+}
